@@ -1,6 +1,7 @@
 import numpy as np
 import multiprocessing
 import json
+import sys
 import matplotlib.pyplot as plt
 import tikzplotlib as tkz
 import datetime
@@ -9,7 +10,9 @@ from running_utils import trial
 
 if __name__ == '__main__':
 
-    config = {"S" : 2, "A" : 2, "H" : 5, "K" : 20000, "alg_lst" : ["BF", "BFI", "CH", "CHI", "MVP"], "n_trials" : 20, "n_cores" : 20}
+    with open('configs/' + sys.argv[1] + '.json') as json_file:
+        config = json.load(json_file)
+
     time_print = datetime.datetime.now().strftime("(%Y-%b-%d %I:%M%p)")
 
     S = config["S"]
