@@ -9,7 +9,7 @@ from running_utils import trial
 
 if __name__ == '__main__':
 
-    config = {"S" : 2, "A" : 2, "H" : 5, "K" : 20000, "alg_lst" : ["BF", "BFI"], "n_trials" : 4, "n_cores" : 4}
+    config = {"S" : 2, "A" : 2, "H" : 5, "K" : 20000, "alg_lst" : ["BF", "BFI", "CH", "CHI", "MVP"], "n_trials" : 20, "n_cores" : 20}
     time_print = datetime.datetime.now().strftime("(%Y-%b-%d %I:%M%p)")
 
     S = config["S"]
