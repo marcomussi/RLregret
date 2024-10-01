@@ -12,3 +12,9 @@ config = {
 
 with open('configs/config6.json', 'w') as f:
     json.dump(config, f)
+
+# conda activate py39
+
+# python3 parallel_runner.py config
+
+# scp mussi@turing.deib.polimi.it:RLregret/results.zip .

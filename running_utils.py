@@ -1,5 +1,6 @@
 import numpy as np
 import time
+import datetime
 
 from env import ToyEnv
 from agents import UCBVI, MVP
@@ -7,6 +8,7 @@ from agents import UCBVI, MVP
 
 def trial(S, A, H, K, run_lst, trial_id=1):
 
+    np.random.seed(trial_id)
     env = ToyEnv(S, A, H)
     opt = env.computeOptimalValueFunction()
     opt_rewards = opt * np.ones(K)
@@ -15,8 +17,9 @@ def trial(S, A, H, K, run_lst, trial_id=1):
 
     for alg in run_lst:
         start_time = time.time()
-        print("Starting trial " + str(trial_id+1) + " for " + alg + ".")
-        if alg == "MVP":   
+        time_print = datetime.datetime.now().strftime("(%Y-%b-%d %I:%M%p)")
+        print(time_print + " Starting trial " + str(trial_id+1) + " for " + alg + ".")
+        if alg == "MVP":
             agent = MVP(S, A, H, K, env.getRewards(), 1/K)
         elif alg == "CHI":
             agent = UCBVI(S, A, H, K, env.getRewards(), 'CH', improved=True)
@@ -43,5 +46,5 @@ def trial(S, A, H, K, run_lst, trial_id=1):
         ep_regret = ep_regret.cumsum()
         print("Terminating trial " + str(trial_id+1) + " for " + alg + ". Elapsed time: " + str(int(time.time() - start_time)) + " sec.")
         results_all[alg] = ep_regret
-    
+
     return results_all
